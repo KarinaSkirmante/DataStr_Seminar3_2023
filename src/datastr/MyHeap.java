@@ -60,4 +60,38 @@ public class MyHeap<T> {
 		elements = newElements;
 		arraySize = newArraySize;
 	}
+	
+	
+	public void add(T newElement) {
+		//1. verify if heap is full
+		if(isFull())
+		{
+			//1.2. increase size and copy elements
+			increaseArray();
+		}
+		
+		//2. add new elements
+		elements[elementCounter] = newElement;
+		//3. increase element counter
+		elementCounter++;
+		//TODO call reheapUp() function
+	}
+	
+	public T remove() throws Exception {
+		if(isEmpty())
+		{
+			throw (new Exception("heap is empty, it is not possible to retrieve root element"));
+		}
+		
+		T element = elements[0];
+		elements[0] = elements[elementCounter-1];
+		elementCounter--;
+		//TODO call reheapDown()
+		return element;
+		
+	}
+	
+	
+	
+	
 }
