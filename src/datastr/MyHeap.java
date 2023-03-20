@@ -198,18 +198,19 @@ public class MyHeap<T> {
 		// ROOT - LEFT - RIGHT
 		
 		//ROOT
-		System.out.print("Parent:" + elements[indexOfElement]);
+		System.out.print(" Parent:" + elements[indexOfElement]);
 		
 		//LEFT
 		if(leftChIndex < elementCounter) {
-			System.out.print("LeftCh: " + elements[leftChIndex]);
+			System.out.print("; LeftCh: " + elements[leftChIndex]);
 			printByPrefixHelper(leftChIndex);
 		}
 		//RIGHT
 		if(rightChIndex < elementCounter) {
-			System.out.print("RightCh: " + elements[rightChIndex]);
+			System.out.print("; RightCh: " + elements[rightChIndex]);
 			printByPrefixHelper(rightChIndex);
 		}
+		//System.out.println();
 		
 	}
 	
