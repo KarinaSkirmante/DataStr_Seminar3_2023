@@ -1,6 +1,6 @@
 package model;
 
-public class Patient {
+public class Patient implements Comparable<Patient>{
 	
 	private String name;
 	private String surname;
@@ -38,6 +38,19 @@ public class Patient {
 	@Override
 	public String toString() {
 		return "Patient [name=" + name + ", surname=" + surname + ", prio=" + prio + "]";
+	}
+	@Override
+	public int compareTo(Patient o) {
+		if(prio > o.prio) {
+			return 1;
+		}
+		else if (prio < o.prio) {
+			return -1;
+		}
+		else
+		{
+			return 0;
+		}
 	}
 	
 	

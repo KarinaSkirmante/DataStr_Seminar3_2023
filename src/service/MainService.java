@@ -1,6 +1,9 @@
 package service;
 
+import javax.sound.midi.Patch;
+
 import datastr.MyHeap;
+import model.Patient;
 
 public class MainService {
 
@@ -21,6 +24,25 @@ public class MainService {
 		System.out.println(intHeap.remove());//11
 		System.out.println("\n----------------------------------------");
 		intHeap.printByPrefix();//P: 10
+		
+		
+		System.out.println("\n-----------------------------------");
+		MyHeap<Patient> hospital = new MyHeap<>();
+		hospital.add(new Patient("Janis", "Berzins", 1));
+		hospital.add(new Patient("Līga", "Berzina", 6));
+		hospital.add(new Patient("Baiba", "Berzina", 3));
+		hospital.add(new Patient("Dace", "Berzina", 10));
+		
+		System.out.println(hospital.remove());//Dace
+		System.out.println(hospital.remove());//Līga
+		System.out.println(hospital.remove());//Baiba
+		System.out.println(hospital.remove());//Janis
+		
+		
+		
+		
+		
+		
 		}
 		catch (Exception e) {
 			System.out.println(e);
