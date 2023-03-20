@@ -160,8 +160,61 @@ public class MyHeap<T> {
 	}
 	
 //TODO makeEmpty
+	public void makeEmpty()
+	{
+		arraySize = DEFAULT_ARRAY_SIZE;
+		elementCounter = 0;
+		elements = (T[]) new Object[arraySize];
+		System.gc();
+	}
 //TODO print using for loop
+	public void print() throws Exception {
+		if (isEmpty()) {
+			throw (new Exception("Heap is empty and it is not possible to print elements"));
+		} else {
+			for (int i = 0; i < elementCounter; i++) {
+				System.out.print(elements[i] + " ");
+			}
+			System.out.println();
+		}
+	}
+	
+	
+	
 //TODO print using prefix
+	public void printByPrefix() throws Exception {
+		if (isEmpty()) {
+			throw (new Exception("Heap is empty and it is not possible to print elements"));
+		} else {
+			printByPrefixHelper(0);
+		}
+	}
+	
+	
+	private void printByPrefixHelper(int indexOfElement) {
+		int rightChIndex = indexOfElement * 2 + 2; //3*2+2 = 8 
+		int leftChIndex  = indexOfElement * 2 + 1; //3*2+1 = 7
+		
+		// ROOT - LEFT - RIGHT
+		
+		//ROOT
+		System.out.print("Parent:" + elements[indexOfElement]);
+		
+		//LEFT
+		if(leftChIndex < elementCounter) {
+			System.out.print("LeftCh: " + elements[leftChIndex]);
+			printByPrefixHelper(leftChIndex);
+		}
+		//RIGHT
+		if(rightChIndex < elementCounter) {
+			System.out.print("RightCh: " + elements[rightChIndex]);
+			printByPrefixHelper(rightChIndex);
+		}
+		
+	}
+	
+	
+	
 //TODO print using postfix
 //TODO print using inorder
 	
