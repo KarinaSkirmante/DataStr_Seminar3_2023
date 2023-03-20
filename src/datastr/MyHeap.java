@@ -21,10 +21,6 @@ public class MyHeap<T> {
 		
 	}
 	
-	//TODO isFull, isEmpty, howManyElements, increaseArray
-
-	
-	
 	public boolean isEmpty() {
 		return (elementCounter == 0);
 	}
@@ -74,7 +70,7 @@ public class MyHeap<T> {
 		elements[elementCounter] = newElement;
 		//3. increase element counter
 		elementCounter++;
-		//TODO call reheapUp() function
+		reheapUp(elementCounter - 1);
 	}
 	
 	public T remove() throws Exception {
@@ -92,6 +88,35 @@ public class MyHeap<T> {
 	}
 	
 	
+	private void reheapUp(int indexOfElement) {
+		
+		// rightChIndex = parentIndex * 2 + 2;
+		//leftChIndex  = parentIndex * 2 + 1;
+		
+		//(rightChIndex - 2)/2 =  parentIndex
+		//(leftChIndex - 1)/2  =  parentIndex
+		
+		// (4-2)/2 = 1 -> (4 - 1)/2 = 3/2 = 1.5-> (int)1.5 = 1
+		// (3-1)/2 = (int)1 -> 1
+		
+		int indexOfParent = (int)((indexOfElement - 1)/2);
+		
+		if(indexOfElement >= 0) {
+			
+			//if(elements[indexOfElement] > elements[indexOfParent]) {
+			if(     ((Comparable)(elements[indexOfElement])).compareTo(elements[indexOfParent]) > 0 )
+			{
+				swap(indexOfElement, indexOfParent);
+				reheapUp(indexOfParent);
+			}
+		}
 	
+	}
+	
+	private void swap(int index1, int index2) {
+		T temp = elements[index1];
+		elements[index1] = elements[index2];
+		elements[index2] = temp;
+	}
 	
 }
