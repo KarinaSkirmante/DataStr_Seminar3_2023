@@ -81,8 +81,9 @@ public class MyHeap<T> {
 		
 		T element = elements[0];
 		elements[0] = elements[elementCounter-1];
+		elements[elementCounter] = null;
 		elementCounter--;
-		//TODO call reheapDown()
+		reheapDown(0);
 		return element;
 		
 	}
@@ -118,5 +119,51 @@ public class MyHeap<T> {
 		elements[index1] = elements[index2];
 		elements[index2] = temp;
 	}
+	
+	
+	private void reheapDown(int indexOfElement) {
+		//0. find out both children indexes
+		int rightChIndex = indexOfElement * 2 + 2; //3*2+2 = 8 
+		int leftChIndex  = indexOfElement * 2 + 1; //3*2+1 = 7
+		//1. only left child
+		if(leftChIndex < elementCounter && rightChIndex >= elementCounter) {
+			//1.1. compare element with left child, if necessary try to swap
+			if(  ((Comparable)(elements[leftChIndex])).compareTo(elements[indexOfElement]) > 0 )
+			{
+				swap(leftChIndex, indexOfElement);
+			}
+		}
+		//2. has two children
+		else if(leftChIndex < elementCounter && rightChIndex < elementCounter) {
+			//2.1. find out the largest child
+			//left child is bigger than right child
+			if(  ((Comparable)(elements[leftChIndex])).compareTo(elements[rightChIndex]) > 0 )
+			{
+				if(  ((Comparable)(elements[leftChIndex])).compareTo(elements[indexOfElement]) > 0 ) {
+					swap(leftChIndex, indexOfElement);
+					reheapDown(leftChIndex);
+				}
+					
+			}
+			//right child is bigger than left child
+			else
+			{
+				if(  ((Comparable)(elements[rightChIndex])).compareTo(elements[indexOfElement]) > 0 ) {
+					swap(rightChIndex, indexOfElement);
+					reheapDown(rightChIndex);
+				}
+			}
+				//2.2. compare element with the largest child, if necessary try to swap
+			//2.3. call this function recursive
+		}
+
+	}
+	
+//TODO makeEmpty
+//TODO print using for loop
+//TODO print using prefix
+//TODO print using postfix
+//TODO print using inorder
+	
 	
 }
